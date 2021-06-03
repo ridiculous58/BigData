@@ -1,0 +1,131 @@
+package com.bigdatacompany.mongodbent;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.logging.Filter;
+
+public class Application {
+
+    public static void main(String[] args) {
+        MongoClient client = new MongoClient("localhost",27017);
+        MongoDatabase infoDb = client.getDatabase("Info");
+        //infoDb.createCollection("Personal");
+        MongoCollection<Document> personalCollection = infoDb.getCollection("Personal");
+        //CRUD ISLEMLERI
+        /*
+        //Create
+        //temel bi obje olusturuyoruz
+        BasicDBObject data = new BasicDBObject()
+                .append("name","Stephen Hawking")
+                .append("date",1942)
+                .append("country","England");
+
+        //insertone yani bitane ekliyeceğimizi bildiriyoruz
+        // ve ekliyecegimiz basicobjeyi jsona donusturup documente parse ediyoruz
+        personalCollection.insertOne(Document.parse(data.toJson()));
+        */
+
+        //Birden Fazla documentnasil ekleyebiliriz tabiki insertmany ile
+        /*
+        BasicDBObject data = new BasicDBObject()
+                .append("name","Stephen Hawking")
+                .append("date",1942)
+                .append("country","England");
+
+        BasicDBObject data2 = new BasicDBObject()
+                .append("name","Issac Newton")
+                .append("date",1820)
+                .append("country","England");
+
+        Document parse = Document.parse(data.toJson());
+        Document parse1 = Document.parse(data2.toJson());
+
+        personalCollection.insertMany(Arrays.asList(parse,parse1));
+        */
+        //READ ISLEMLERI
+
+        //Butun Documentleri getirme
+        /*FindIterable<Document> documents = personalCollection.find();
+
+        for (Document doc:documents){
+            System.out.println(doc.toJson());
+        }*/
+        //Date 1942 olan document i getirme
+        /*
+        FindIterable<Document> documents = personalCollection.find(new BasicDBObject("date", 1942));
+        for (Document doc:documents)
+        {
+            System.out.println(doc.toJson());
+        }
+        */
+
+        //Update
+        //Birthdate 1942 olani 1952 yap
+        /*
+        Bson filter = Filters.eq("name", "Stephen Hawking");
+        Bson update = Updates.set("date", 1952);
+        personalCollection.updateOne(filter,update);
+        */
+        //Again Create
+        //Document Ekleme
+        /*
+        BasicDBObject data1 = new BasicDBObject()
+                .append("name","Albert Einstein")
+                .append("date",1879)
+                .append("country","Germany");
+        BasicDBObject data2 = new BasicDBObject()
+                .append("name","Nikola Tesla")
+                .append("date",1856)
+                .append("country","Croatia");
+        BasicDBObject data3 = new BasicDBObject()
+                .append("name","Thomas Edison")
+                .append("date",1847)
+                .append("country","USA");
+        BasicDBObject data4 = new BasicDBObject()
+                .append("name","Elon Musk")
+                .append("date",1971)
+                .append("country","Africa")
+                .append("job","Entrepreneur");
+
+        Document parse1 = Document.parse(data1.toJson());
+        Document parse2 = Document.parse(data2.toJson());
+        Document parse3 = Document.parse(data3.toJson());
+        Document parse4 = Document.parse(data4.toJson());
+
+        personalCollection.insertMany(Arrays.asList(parse1,parse2,parse3,parse4));
+        */
+        //Dokumana yeni field ekleme
+        /*
+        Bson filter = Filters.exists("job");
+        Bson update = Updates.set("Child", "Nevada Musk");
+        personalCollection.updateOne(filter,update);
+        */
+
+
+        //Delete bir tane document silme
+        /*
+        Bson deletefilter = Filters.eq("name", "Elon Musk");
+        personalCollection.deleteOne(deletefilter);
+        */
+        //Delete birden fazla document silme
+        /*
+        Bson deletefilter = Filters.eq("country", "England");
+        personalCollection.deleteMany(deletefilter);
+        */
+        //Drop Database nesnesini silme Collection siliyoruz
+        /*
+         personalCollection.drop();
+         infoDb.drop();
+         */
+    }
+}

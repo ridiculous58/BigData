@@ -1,0 +1,38 @@
+MongoDB (NoSQL teknolijisinin en cok kullanılan veri tabanidir)
+MongoDb de her bir kayit dokumandir
+Json benzeri Binary Json(BSn) ile verileri tutar
+Relational = Table => MongoDB = Collection
+Relational = Row => MongoDB = Document
+Relational = Index => MongoDB = Index
+Relational = Foreign Key => MongoDB = Reference
+Relational = Partition => MongoDB = Shard
+
+Neden MongoDB kullanmaliyiz
+
+-Ölçeklenebilir(Scalable): Veri boyutu arttiği durumlarda veya performans sıkıntısı yaşadıgımız durumlarda makine ekliyebiliriz(Cluster)
+-Veriler document(belge) biçiminde saklanır.Burada JSOn verilerini kullanabiliriz.
+-Verilerin birden fazla kopyası saklanabilir ve veri kaybı yaşanmaz(Replication)
+
+MongoDB de Id bilgisi 
+MongoDB üzerinde bir kayıt insert edilirken otomatik olarak _id isimli bir alan eklenir.
+Bu alan kullanıcı tarafından girilmezse , tekil(unique) bir değer ile kaydedilir
+
+soldan ilk 4 karakter = timestamp
+sonraki 3 karakter = machine identifier 
+sonraki 2 karakter = process id
+son kalan 3 karakter ise = counter 
+
+//MongoDB yi kurduktan sonra Robomongo yu kuruyoruz ister robomongo ister cmd ile baglanabiliriz
+
+cdm ile:
+mongo db nin program files dosyasından erişip server/4.2/bin/
+mongo yazıp caliştiriyoruz
+show dbs;
+use company (Yeni bir database olusturma)
+db.CreateCollection("person"); (MangoDb = Collection , Sql = Table)
+show collections
+db.person.insert({"name":"Stephen Hawking"})
+db.person.find({})
+
+
+MongoDb Atlas

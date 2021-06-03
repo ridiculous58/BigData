@@ -1,0 +1,38 @@
+HDFS e dosya olusturma
+hdfs dfs -mkdir /example
+
+Link : bit.ly/bigdatasets download
+
+HDFS e dosya atma
+hdfs dfs -copyFromLocal /kopyalanacakdosya.csv /example (/example hdfs deki dosya)
+
+HDFS deki dosya sayısını verir
+hdfs dfs -count /example (example:hdfsdeki dosya)
+hdfs dfs -count /var
+
+Dosyanın içeriğini gosterir
+hdfs dfs -cat /example/ratings.csv
+
+Dosya Kopyalama
+hdfs dfs -cp /example/ratings.csv /var
+
+Dosya Silme
+hdfs dfs rm -r /example
+
+Dosya taşima
+hdfs dfs -mv /var/ratings.csv /user
+
+Dosya Listeleme
+hdfs dfs -ls /var
+hdfs dfs -ls /user
+
+Dosya izinleri yonetme
+hdfs dfs -chmod +x /user/ratings.csv
+
+Replecation faktoru değitirebiliriz cluster için
+hdfs dfs -setrep 4 -R /user/ratings.csv
+
+
+
+
+

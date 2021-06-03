@@ -1,0 +1,40 @@
+Apache Hive Nedir : Büyük veriler ile hadoop üzerinde işlem yapmak için kullanılan mapreduce geliştirme yontemidir
+facebook tarafindan geliştirilen açık kaynaklı bir kutuphanedir
+
+
+Apache hive hangi durumlarda tercih edilir:
+Hive ile büyük veriler üzerinde sql sorguları ile basit analizler yapmak için tercih edebilir.
+
+Hive MetaStore Nedir(Cokta uzurunde durma genelde sql ile ugrasanla için yapılmıştır software ler genelde sparq kullanır) :
+Şema bilgileri,tablolar,kolonlar,kolon tipleri gibi bilgilerin saklandığı bolumdur
+
+
+Kodlama Adımları 
+
+Loglari HDFS'e at
+hdfs dfs -CopyFromLocal /Kaynak /Hedef
+
+Veri Tabanı Olustur
+Create database My_DB;
+
+Tablo Oluştur
+Create external table if not exists tablename
+(
+ColumnName : ColumnType,
+)
+row format delimited
+fields terminated By ','
+Lines Terminated By '\n'
+Stored as Texfile;
+
+Impala : Normal Sql gibi Çalişir HDFS baglı kalınmadıgında seçilebilir(AmazonSTR dende )
+Hive : MapReduce şeklinde dağitik (Normal Sql Sorgusu yazılır fakat arka tarafta Hadoop MapReduce şeklinde(yani verileri dağitik şekilde) çalışır)
+
+Kisa Not : Veri Buyukse Hive Cunku MapReduce girer Veri Kucuk ise Impala Noemal Sql gibi çalişir cunku
+
+
+Konsole da Hive:
+
+hive
+hive>select first_name,age from person.sampledata where age > 50;
+hive> create database persontest;

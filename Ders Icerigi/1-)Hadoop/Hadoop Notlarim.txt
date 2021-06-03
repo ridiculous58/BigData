@@ -1,0 +1,16 @@
+Java İle Geliştirilmiştir
+
+HDFS = Hadoop Distributed File System
+YARN = Kaynak yonetimini saglar
+MapReduce = Sarpk Daha cok kullanılıyor
+HBase = NoSql
+
+Pig = Script
+Hive = Sql
+HBase = NoSQL
+Accumulo = NoSQL
+Strom = Stream
+Solr = Search , elasticsearch
+Spark = In-Memory
+Cascading = Java
+Others = ISV Engines

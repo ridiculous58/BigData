@@ -1,0 +1,112 @@
+Apache Kafka Kuyruk mantiğiyla calişir FIFO (First in First out)
+(ilk giren ilk cikar)
+Apache Kafka Real Time Projelerde kullanilir
+
+karmaşik veri => Kafkaya gider => ordna stream processors Analytics Consumers
+
+Producers = Verileri Gonderen Kisim
+Consumers=> Verileri Çeken kisim
+
+Producers => Topic (Single Node - Single Kafka Broker) =>Consumers
+
+
+Kafka : Verileri Dagitik veri depolama ve replication mevcuttur
+
+Broker = Kafka Makinasi Adına Broker Denir
+
+leader(red) and replicas(blue)
+
+Zookeeper
+
+Zookeeper, dağıtık sunucu mimarilerinde kaynak yonetimini koordine eder.
+
+Zookeeper,genel olarak konfigurasyon için kullanılır ve konfigurasyon
+dosyalarına tutar.
+
+Kafka Kurulumu
+indirdiğimiz dosyayı zipten cıkartıcagız
+Config klosorunun içersidneki server.properties dosyasını guncelliyecegiz
+log.dirs = C:\KafkaKlasorAdı\kafka-logs
+log.dirs = C:\kafka_2.10-0.10.1.0\kafka-logs
+Zkserver baslattıktan sonra komut satırında kafkayı baslatacagız
+
+C:\kafka_2.10-0.10.1.0\bin\windows> kafka-server-start.bat ..\..\config\server.properties
+
+Zookeeper sitesinden uygun versiyon indireceğiz
+İndirdiğimiz dosyayı Zipten cıkartıp C:dizinine kopyalacagız
+Config klasorunun icersindeki zoo_sample.cfg dosya ismini
+zoo.cfg olarak guncelliyeceğiz
+zoo.cfg dosyasını guncelliyeceğiz
+dataDir = C:\zookeeper-3.3.6\data
+
+sonra windows ortam değişkenlerinden new deyip
+ZOOKEEPER_HOME
+C:\zookeeper-3.4.14
+ve path e new deyip
+%ZOOKEEPER_HOME%\bin
+
+sonra cmd den 
+zkserver diyip zookeeper ı baslatıyoruz
+
+sonra cdm  yeni pencerede işlemi gercekleştiriyotuz
+C:\kafka_2.10-0.10.1.0\bin\windows> kafka-server-start.bat ..\..\config\server.properties
+
+
+
+Kafka Kavramları
+
+Apache Kafka Cluster
+
+broker1 = makine sunucu diyebiliriz
+
+Zookeeper birden fazla olabilir Kafka nin brokerlar arasındaki iletişimi saglar veri tutmaz
+
+Replication Yapısı Kafka da da Vardir
+
+Broker in içersinde Topicler bulunur
+Topiclere Producer Data gonderir
+Consumer : Topicten data çeker
+
+kafka gelen key value seklideki verileri her partionın bir tane key i olacak sekilde 
+gruplar
+
+Kafkada sadece broker ların datası tutulur 
+zookeeper da topicler ,
+
+List Topic
+C:\kafka_2.12-2.6.0\bin\windows>kafka-topics.bat --list --zookeeper localhost:2181
+
+Crerate Topic
+C:\kafka_2.12-2.6.0\bin\windows>kafka-topics.bat --create --zookeeper localhost:2181 --partitions 3 --replication-factor 1 --topic btkakademi
+
+
+
+
+Herhangibi programlama dilinde producer u send ettikten sonra 
+Su anda gelen producer ları goster
+
+C:\kafka_2.12-2.6.0\bin\windows>kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic search
+
+Daha onceki ve şimdi gelen producer larıda goster
+
+C:\kafka_2.12-2.6.0\bin\windows>kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic search --from-beginning
+
+Producer Veri Gonderme Console dan
+
+C:\kafka_2.12-2.6.0\bin\windows>kafka-producer-consumer.bat --broker-list localhost:9092 --topic search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

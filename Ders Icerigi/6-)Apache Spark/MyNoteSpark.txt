@@ -1,0 +1,8 @@
+Büyük verileri dağitik işlem ile analiz edebilmek için Scala 
+ile geliştirilmiş Buyuk Veri Kutuphanesidir
+
+Spark in-memory çalişmaktadir.Bundan dolayı depolama birimi yoktur
+Veri analizlerini Ram Uzerinde gerçekleştirir
+
+Spark in amaci verileri analiz etmektir
+

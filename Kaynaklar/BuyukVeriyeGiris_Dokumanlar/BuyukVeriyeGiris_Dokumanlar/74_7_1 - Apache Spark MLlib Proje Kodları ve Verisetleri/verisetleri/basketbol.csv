@@ -1,0 +1,10 @@
+hava,sicaklik,nem,ruzgar,basketbol
+yagmurlu,yuksek,yuksek,hayir,hayir
+yagmurlu,yuksek,yuksek,evet,hayir
+kapali,yuksek,yuksek,hayir,evet
+gunesli,normal,yuksek,hayir,evet
+gunesli,serin,normal,hayir,evet
+gunesli,serin,normal,evet,hayır
+yagmurlu,normal,yuksek,hayır,evet
+yagmurlu,serin,normal,hayır,evet
+gunesli,normal,normal,hayır,evet

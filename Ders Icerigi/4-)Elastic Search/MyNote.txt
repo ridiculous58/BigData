@@ -1,0 +1,162 @@
+-Full text search işlemlerinde kullanılan NoSql teknolijisidir
+-Altyasında Apache Lucune Ve Solr Bulunur
+-Elasticsearch bir kelimenin hangi dokumanlarda(row) gectiğini veriler kaydedilirken indeksler.Sonrasında ise kelime aramak istediğimizde tüm veriler uzerinde arama yapmak yerine, indeks listesinden arama yapar
+-Semi Structured dir
+MSql			 Elasticsearch
+Database 	=> 	 Index
+Table 		=>	 Type
+Row		=>  	 Document
+Column		=>	 Fields
+Schema		=>	 Mapping
+
+-Cluster Yapısı Vardir , Replicationda var
+-Ölceklenebilirlik soz konusudur
+
+Verilerini Json tipinde tutar
+
+
+Postman Araciliyla Put isteğinde bulunup:
+Index Olusturma
+localhost:9200/exam (9200 default port)
+
+Put isteği
+localhost:9200/<databsae adi>/<table adi>/<id>
+
+Put İstegi
+Uri Kismi
+localhost:9200/exam/products/100
+Body
+{
+  "brand":"apple",
+  "name":"iphone",
+  "color":"black",
+  "date":"2020"
+}
+
+
+GET isteği 
+localhost:9200/exam/products/_search
+
+Put İstegi
+Uri Kismi
+localhost:9200/exam/products/101
+Body
+{
+  "brand":"apple",
+  "name":"iphone 7",
+  "color":"kirmizi",
+  "date":"2018"
+}
+
+Put İstegi
+Uri Kismi
+localhost:9200/exam/products/102
+Body
+{
+  "brand":"apple",
+  "name":"iphone 6",
+  "color":"kirmizi",
+  "date":"2016"
+}
+
+Put İstegi
+Uri Kismi
+localhost:9200/exam/products/103
+Body
+{
+  "brand":"Samsung",
+  "name":"Galaxy Note 8",
+  "color":"Blue",
+  "date":"2015"
+}
+
+GET isteği 
+localhost:9200/exam/products/_search
+
+Put İstegi
+Uri Kismi
+localhost:9200/exam/products/104
+Body
+{
+  "brand":"Vestel",
+  "name":"Venus",
+  "color":"Black",
+  "camera_resolution":"12px"
+}
+
+GET isteği 
+localhost:9200/exam/products/_search
+
+
+Ayni id ye tekrar PUT isteğinde bulunuyoruz (result = Update)
+
+
+Put İstegi
+Uri Kismi
+localhost:9200/exam/products/100
+Body
+{
+  "brand":"apple",
+  "name":"iphone x",
+  "color":"black",
+  "date":"2021"
+}
+
+POST Isteği
+Uri
+localhost:9200/exam/products/_search
+Body
+{
+   "query":{
+		"match":{
+			"brand":"apple"
+		}
+	
+	}
+
+}
+result = brand i apple olanlari doner
+
+Uri
+localhost:9200/exam/products/_count
+Body
+{
+   "query":{
+		"match":{
+			"brand":"apple"
+		}
+	
+	}
+
+}
+result = kac data oldugunu doner
+
+
+Delete isteği
+localhost:9200/exam/products/100
+
+
+Post isteği
+Uri
+localhost:9200/exam/products/_delete_by_query
+Body
+{
+   "query":{
+		"match":{
+			"brand":"apple"
+		}
+	
+	}
+
+}
+
+GET isteği
+localhost:9200/exam/products/_search
+
+elasticsearch java entegrasyonu :
+elasticsearch java api documents
+
+
+
+
+
